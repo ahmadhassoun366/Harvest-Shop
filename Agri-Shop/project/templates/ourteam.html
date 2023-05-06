@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet Our Team</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-nU5iWTkPC/kk8hjebdA1zOeChb2iAmZf8X9lIUCzofCQ2FLF0R7dJrYzrBJrjchE3Zo/YpOW0CgJj9/f9W8t8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <section class=" py-32 bg-white">
+          <h2 class="text-5xl font-extrabold text-center text-gray-900 py-10">Meet Our Team</h2>
+
+        {% load static %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div class="flex flex flex-col  md:flex-row gap-8 m-5">
+  <div class="relative group rounded-lg overflow-hidden w-full md:w-1/4 sm:w-1/4 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+  <img src="{% static 'images/perosn1.png' %}" alt="Team member 1" class="w-full">
+  <div class="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-90 transition duration-500 ease-in-out">
+    <div class="p-4 absolute bottom-0 left-0">
+      <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-yellow-300 transition duration-500 ease-in-out">John Doe</h3>
+      <p class="text-gray-200 text-sm group-hover:text-white transition duration-500 ease-in-out">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod commodo enim, sit amet scelerisque mauris ultrices sed.</p>
+    </div>
+  </div>
+</div>
+<div class="relative group rounded-lg overflow-hidden w-full md:w-1/4 sm:w-1/4 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+  <img src="{% static 'images/perosn2.png' %}" alt="Team member 1" class="w-full">
+  <div class="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-90 transition duration-500 ease-in-out">
+    <div class="p-4 absolute bottom-0 left-0">
+      <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-yellow-300 transition duration-500 ease-in-out">John Doe</h3>
+      <p class="text-gray-200 text-sm group-hover:text-white transition duration-500 ease-in-out">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod commodo enim, sit amet scelerisque mauris ultrices sed.</p>
+    </div>
+  </div>
+</div>
+
+        <div class="relative group rounded-lg overflow-hidden w-full md:w-1/4 sm:w-1/4 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+  <img src="{% static 'images/person3.png' %}" alt="Team member 1" class="w-full">
+  <div class="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-90 transition duration-500 ease-in-out">
+    <div class="p-4 absolute bottom-0 left-0">
+      <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-yellow-300 transition duration-500 ease-in-out">John Doe</h3>
+      <p class="text-gray-200 text-sm group-hover:text-white transition duration-500 ease-in-out">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod commodo enim, sit amet scelerisque mauris ultrices sed.</p>
+    </div>
+  </div>
+</div>
+
+        <div class="relative group rounded-lg overflow-hidden w-full md:w-1/4 sm:w-1/4 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+  <img src="{% static 'images/perosn4.png' %}" alt="Team member 1" class="w-full">
+  <div class="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-90 transition duration-500 ease-in-out">
+    <div class="p-4 absolute bottom-0 left-0">
+      <h3 class="text-lg font-semibold mb-2 text-white group-hover:text-yellow-300 transition duration-500 ease-in-out">John Doe</h3>
+      <p class="text-gray-200 text-sm group-hover:text-white transition duration-500 ease-in-out">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod commodo enim, sit amet scelerisque mauris ultrices sed.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>

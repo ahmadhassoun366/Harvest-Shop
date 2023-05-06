@@ -1,0 +1,59 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Client</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.4/tailwind.min.css">
+    </head>
+    <body class="bg-gray-100">
+        {% include "navbar.html" %}
+        <div id="products" class="container mx-auto py-10 ">
+            <h1 class="text-5xl font-bold text-center">All Products</h1>
+            {% if user == 'C' %}
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-20 mt-10 mx-10">
+                {% for data in products_data %}
+                {% load static %}
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg w-11/12">
+      <div class="relative h-56 overflow-hidden">
+        <img src="{{data.image.url}}" alt="{{ data.name }}" class="absolute inset-0 object-cover w-full h-full transform scale-x-[-1]">
+        <div class="absolute inset-0 bg-gray-900 opacity-0 hover:opacity-90 transition duration-300">
+          <div class="flex flex-col justify-center h-full text-center text-white p-4">
+            <h2 class="text-xl font-extrabold mb-2">{{ data.name }}</h2>
+            <p class="text-sm">{{ data.description }}</p>
+            <p class="text-sm"><span class="font-bold">Price:</span> ${{ data.unit_price }}</p>
+            <p class="text-sm"><span class="font-bold">Quantity:</span> {{ data.quantity_in_stock }}</p>
+            <p class="text-sm"><span class="font-bold">Farmer:</span> {{ data.farmer }}</p>
+          </div>
+        </div>
+      </div>
+      <form action="{% url 'create_order' user=user %}?product_id={{ data.id }}" method="POST" class="p-4">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="quantity">
+            Quantity
+          </label>
+          <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="quantity" name="quantity" type="number" min="1" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="payment_type">
+            Payment Type
+          </label>
+          <select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="payment_type" name="payment_type">
+              <option value="Cash">Cash</option>
+              <option value="Card">Card</option>
+          </select>
+        </div>
+        <div class="flex justify-center">
+          <button class="bg-gray-900 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+            Add to Cart
+          </button>
+        </div>
+      </form>
+    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% include "footer.html" %}
+    </body>
+    </html>

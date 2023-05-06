@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@latest/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar -->
+<nav class="flex flex-row bg-gray-900 text-white sticky top-0 z-50">
+    <div class="container px-2 py-6 flex justify-between items-center">
+            {% load static %}
+
+        <img src="{% static 'images/logo01.png' %}" class="w-10	bg-gray-50 rounded mx-2"/>
+        <a class="text-2xl font-bold font-heading" href="/">
+            Harvest Store
+        </a>
+
+        <ul class="menu hidden md:flex px-4 mx-auto font-semibold font-heading space-x-8 ">
+            {% if user == None %}
+            <li><a class="hover:text-gray-200 underline underline-offset-8	" href="/">Home</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="/register">Register</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="/about">About</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="#contact">Contact Us</a></li>
+            {% endif %}
+
+            {% if user == "F" %}
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'dashboard' user=user %}">Home</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'orders' user=user %}">Orders</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+
+            {% if user == "C" %}
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'dashboard' user=user %}">Products</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'cart' user=user %}">My Cart</a></li>
+            <li><a class="hover:text-gray-200 underline underline-offset-8" href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+
+       <div class="hidden xl:flex items-center space-x-5 items-center">
+          <!-- Add product      -->
+          {% if user == "F" %}
+          <a class="hover:text-gray-200" href="{% url 'add_product' user=user %}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+          </a>
+          {% endif %}
+          {% if user == "C" %}
+          <a class="flex items-center hover:text-gray-200" href="{% url 'cart' user=user %}">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            <span class="flex absolute -mt-5 ml-4">
+              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+                </span>
+              </span>
+          </a>
+          {% endif %}
+          <!-- Sign In / Register      -->
+          {% if user == None %}
+          <a class="flex items-center hover:text-gray-200" href="/register">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200 mr-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Responsive navbar -->
+      {% if user == "C" %}
+      <a class="xl:hidden flex mr-6 items-center" href="{% url 'cart' user=user %}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span class="flex absolute -mt-5 ml-4">
+          <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+          </span>
+        </span>
+      </a>
+      {% endif %}
+      <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
+         <button id="burger-button" class="flex items-center justify-center w-10 h-10 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 focus:outline-none">
+  <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+    <path d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
+      </a>
+    </nav>
+
+  </section>
+</div>
+</body>
+
+</html>

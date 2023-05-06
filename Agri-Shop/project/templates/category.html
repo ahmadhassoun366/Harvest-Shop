@@ -1,0 +1,131 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <!-- Gogole Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200&display=swap"
+        rel="stylesheet" />
+
+    <!-- AlpineJS -->
+    <script
+        defer
+        src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn-tailwindcss.vercel.app/"></script>
+
+    <style>
+        section {
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
+
+    <!-- Card List Section -->
+    <section x-data="xData()" class=" bg-gray-100 dark:bg-gray-900 py-10 px-12">
+              <h2 class="text-5xl font-extrabold text-center mb-8 text-gray-900">Tips & Beneifits</h2>
+
+        <!-- Card Grid -->
+        <div
+            class="grid grid-flow-row gap-8 text-white sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <template x-for="post in posts">
+
+                <!-- Card Item -->
+                <div
+                    class=" my-8 rounded shadow-lg bg-gray-900 shadow-gray-200 dark:shadow-gray-900  dark:bg-gray-800 duration-300 hover:-translate-y-1"
+                    x-for="(post, index) in posts">
+                    <!-- Clickable Area -->
+                    <a _href="link" class="cursor-pointer">
+                        <figure>
+                            <!-- Image -->
+                            <img
+                                :src="post.image + '?auto=format&fit=crop&w=400&q=50'"
+                                class="rounded-t h-72 w-full object-cover" />
+
+                            <figcaption class="p-4">
+                                <!-- Title -->
+                                <p
+                                    class="text-lg mb-4 font-bold leading-relaxed text-white dark:text-gray-300"
+                                    x-text="post.title">
+                                    <!-- Post Title -->
+                                </p>
+
+                                <!-- Description -->
+                                <small
+                                    class="leading-5 text-white dark:text-gray-400"
+                                    x-text="post.description">
+                                    <!-- Post Description -->
+                                </small>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </section>
+
+<script>
+    function xData() {
+        /**
+         * Shuffle an array
+         * @param {Array} array
+         * @source https://stackoverflow.com/a/2450976/6940144
+         */
+        function shuffle(array) {
+            let currentIndex = array.length,
+                randomIndex;
+
+            // While there remain elements to shuffle.
+            while (currentIndex != 0) {
+                // Pick a remaining element.
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex],
+                    array[currentIndex],
+                ];
+            }
+
+            return array;
+        }
+      {% load static %}
+        const posts = [
+    {
+            image: "{% static 'images/img1.png' %}",
+        title: "5 Tips for Successful Organic Farming",
+        description: "Organic farming is a sustainable and eco-friendly method of agriculture. Here are some tips to make your organic farm successful."
+    },
+    {
+        image: "{% static 'images/img2.png' %}",
+        title: "The Benefits of Crop Rotation",
+        description: "Crop rotation is an effective way to maintain soil health and fertility. Learn about the benefits of this agricultural practice."
+    },
+    {
+        image: "{% static 'images/img3.png' %}",
+        title: "How to Raise Chickens for Eggs",
+        description: "Raising chickens for eggs is a rewarding and sustainable practice. Here's a guide on how to get started with chicken farming."
+    },
+    {
+        image: "{% static 'images/img4.png' %}",
+        title: "Tips for Growing Your Own Vegetables",
+        description: "Growing your own vegetables is a great way to have fresh and healthy produce. Here are some tips to get you started with vegetable gardening."
+    }
+];
+
+
+        return {
+            posts: [
+                ...(posts),
+            ],
+        };
+    }
+</script>
+</body>
+</html>
